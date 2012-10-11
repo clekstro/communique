@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
 
-  mount Communique::Engine => "/communique"
+  mount Communique::Engine => "/"
 end
