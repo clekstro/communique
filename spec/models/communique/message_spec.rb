@@ -57,4 +57,35 @@ describe Communique::Message do
       message.draft.should == false
     end
   end
+  describe "Class Methods" do
+    subject { Communique::Message }
+    it{ should respond_to(:by_sender) }
+    it{ should respond_to(:sent) }
+    it{ should respond_to(:draft) }
+    context "#by_sender" do
+      it "should show only those messages by sent by sender" do
+        sender = User.create!
+        other = User.create!
+        sent_by_sender = create(:message, sender_id: sender.id)
+        Communique::Message.by_sender(sender.id).should include(sent_by_sender)
+        Communique::Message.by_sender(other.id).should_not include(sent_by_sender)
+      end
+    end
+    context "#sent" do
+      it "should return only sent messages" do
+        sent_message = create(:message, draft: false)
+        unsent_message = create(:message, draft: true)
+        Communique::Message.sent.should include(sent_message)
+        Communique::Message.sent.should_not include(unsent_message)
+      end
+    end
+    context "#draft" do
+      it "should return only draft messages" do
+        draft_message = create(:message, draft: true)
+        already_sent = create(:message, draft: false)
+        Communique::Message.draft.should include(draft_message)
+        Communique::Message.draft.should_not include(already_sent)
+      end
+    end
+  end
 end

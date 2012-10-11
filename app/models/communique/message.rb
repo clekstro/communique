@@ -1,11 +1,15 @@
-require_relative '../../concerns/shared_actions'
+require_relative '../../shared/shared_actions'
+require_relative '../../shared/message_scopes'
+require_relative '../../shared/shared_scopes'
 
 module Communique
   class Message < ActiveRecord::Base
     attr_accessible :content, :deleted, :draft, :sender_id, :subject
     attr_accessor :recipients
 
-    include Concerns::SharedActions
+    include Shared::SharedActions
+    extend Shared::MessageScopes
+    extend Shared::SharedScopes
 
     belongs_to :sender, class_name: "::User"
     validates_presence_of :sender_id, :recipients, :subject, :content
@@ -18,7 +22,7 @@ module Communique
 
     def send_message
       unmark_as_draft if draft
-      # create MessageReception for each recipient
+
       unless recipients.empty?
         recipients.each do |recipient|
           MessageReception.create!({

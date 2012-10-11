@@ -1,10 +1,6 @@
-require 'active_support/all'
-
 module Communique
-  module Concerns
+  module Shared
     module SharedActions
-      extend ActiveSupport::Concern
-      included do
         def mark_as_deleted
           update_attribute :deleted, true
         end
@@ -13,7 +9,6 @@ module Communique
           update_attribute :deleted, false
         end
 
-      end
     end
   end
 end

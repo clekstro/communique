@@ -1,5 +1,5 @@
 module Communique
-  module Concerns
+  module Shared
     module RecipientActions
       def mark_as_read
         update_attribute :read, true
