@@ -1,4 +1,3 @@
-module Communique
   module Shared
     module SharedActions
         def mark_as_deleted
@@ -11,4 +10,3 @@ module Communique
 
     end
   end
-end

@@ -1,4 +1,4 @@
-module Communique
+
   module Shared
     module SharedScopes
       def deleted
@@ -6,4 +6,3 @@ module Communique
       end
     end
   end
-end

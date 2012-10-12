@@ -4,6 +4,7 @@ require 'rails/all'
 
 Bundler.require
 require "communique"
+require 'devise'
 
 module Dummy
   class Application < Rails::Application

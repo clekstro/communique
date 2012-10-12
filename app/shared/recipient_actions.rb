@@ -1,4 +1,3 @@
-module Communique
   module Shared
     module RecipientActions
       def mark_as_read
@@ -10,4 +9,3 @@ module Communique
       end
     end
   end
-end

@@ -23,7 +23,7 @@ describe Communique::Message do
   end
   context "#send_message" do
     it "creates reception record for all recipients" do
-      user = ::User.create!
+      user = create(:user)
       message = create(:message, recipients: [user])
       message.send_message
       Communique::MessageReception.find_by_recipient_id(user.id).message_id.should == message.id
@@ -59,16 +59,26 @@ describe Communique::Message do
   end
   describe "Class Methods" do
     subject { Communique::Message }
-    it{ should respond_to(:by_sender) }
+    it{ should respond_to(:sent_by) }
     it{ should respond_to(:sent) }
     it{ should respond_to(:draft) }
-    context "#by_sender" do
-      it "should show only those messages by sent by sender" do
-        sender = User.create!
-        other = User.create!
+    context "#sent_by" do
+      it "should show only those messages sent by sender" do
+        sender = create(:user)
+        other = create(:user)
         sent_by_sender = create(:message, sender_id: sender.id)
-        Communique::Message.by_sender(sender.id).should include(sent_by_sender)
-        Communique::Message.by_sender(other.id).should_not include(sent_by_sender)
+        Communique::Message.sent_by(sender).should include(sent_by_sender)
+        Communique::Message.sent_by(other).should_not include(sent_by_sender)
+      end
+    end
+    context "#received_by" do
+      it "should return only those messages received by recipient" do
+        recipient = create(:user)
+        other = create(:user)
+        message = create(:message)
+        message.recipients = [recipient]
+        message.send_message
+        Communique::Message.received_by(recipient).should include(message)
       end
     end
     context "#sent" do

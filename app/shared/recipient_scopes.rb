@@ -1,4 +1,3 @@
-module Communique
   module Shared
     module RecipientScopes
       def read
@@ -9,4 +8,3 @@ module Communique
       end
     end
   end
-end
