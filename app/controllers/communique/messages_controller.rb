@@ -3,7 +3,7 @@ require_dependency "communique/application_controller"
 module Communique
   class MessagesController < ApplicationController
     before_filter :authenticate_user!
-    
+
     def new
         @message = Communique::Message.new
     end
@@ -43,10 +43,10 @@ module Communique
     private
 
     def sent_by_user
-        Communique::Message.sent_by(current_user.id)
+        Communique::Message.sent_by(current_user)
     end
     def received_by_user
-        Communique::Message.received_by(current_user.id)
+        Communique::Message.received_by(current_user)
     end
   end
 end
