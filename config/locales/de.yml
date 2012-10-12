@@ -1,0 +1,5 @@
+de:
+  time:
+    formats:
+      shortened_day: "%e. %B"
+      shortened_time: "%H:%m"
