@@ -18,18 +18,22 @@ module Communique
   
     def inbox
         @messages = received_by_user
+        render :template => 'communique/messages/inbox'
     end
   
     def outbox
         @messages = sent_by_user
+        render :template => 'communique/messages/inbox'
     end
   
     def drafts
         @messages = sent_by_user.draft
+        render :template => 'communique/messages/inbox'
     end
   
     def trash
         @messages = sent_by_user.deleted | received_by_user.deleted
+        render :template => 'communique/messages/inbox'
     end
   
     def read

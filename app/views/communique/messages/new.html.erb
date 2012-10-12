@@ -1,1 +1,4 @@
-This is where the new form will go!
+<%= form_for @message, create_message_path do |f| %>
+<%= f.text :subject %>
+<%= f.text :content %>
+<% end %>

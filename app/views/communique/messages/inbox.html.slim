@@ -1,0 +1,17 @@
+div style="margin-top:60px;"
+ul.nav.nav-tabs
+  li = link_to "Inbox", inbox_path
+  li = link_to "Sent Messages", outbox_path
+  li = link_to "Trash", trash_path
+
+table.table
+  tr
+    <th>Sender</th><th>Subject<th>Date</th><th>Actions</th>
+  - if @messages.size > 0
+    - @messages.each do |message|
+      tr
+        td = message.sender.username
+        td = message.subject
+        td = message.created_at
+  - else
+    tr There are no messages to display.

@@ -1,10 +1,15 @@
+require 'rails'
+require 'bootstrap-sass'
+require 'font-awesome-sass-rails'
+require 'slim'
+
 module Communique
-  class Engine < ::Rails::Engine    
+  class Engine < ::Rails::Engine 
+    isolate_namespace Communique
+     
     config.generators do |g|
-      g.test_framework :rspec, :view_specs => false
+      g.test_framework :rspec, :view_specs => false, :helper_specs => false
       g.integration_tool :rspec
     end
-
-    isolate_namespace Communique
   end
 end
