@@ -12,10 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//
-// Add Backbone related dependencies:
-//
 //= require underscore
 //= require backbone
 //

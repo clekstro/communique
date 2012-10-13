@@ -3,7 +3,12 @@ window.Communique =
   Collections: {}
   Views: {}
   Routers: {}
-  init: -> alert 'Hello from Backbone!'
+  init: -> 
+    new Communique.Routers.Inbox
+    Backbone.history.start({
+      pushState: true
+      root: "/messages/inbox/"
+    })
 
 $(document).ready ->
   Communique.init()
