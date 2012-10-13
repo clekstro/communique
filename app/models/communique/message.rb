@@ -25,19 +25,11 @@ module Communique
 
     def send_message
       unmark_as_draft if draft
-
-      unless recipients.empty?
-        recipients.each do |recipient|
-          MessageReception.create!({
-            message_id: self.id,
-            recipient_id: recipient.id,
-          })
-        end
-      end
+      Shared::MessageBridge::send_message(self)
     end
 
     def sent_on
-      MessageReception.find_by_message_id(self.id).created_at
+      Shared::MessageBridge::sent_on(self)
     end
 
     # def sent?
