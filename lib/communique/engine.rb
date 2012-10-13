@@ -2,6 +2,7 @@ require 'rails'
 require 'bootstrap-sass'
 require 'font-awesome-sass-rails'
 require 'slim'
+require 'backbone-on-rails'
 
 module Communique
   class Engine < ::Rails::Engine

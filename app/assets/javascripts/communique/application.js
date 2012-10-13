@@ -19,10 +19,10 @@
 //= require underscore
 //= require backbone
 //
-//= require ./communique/inbox
+//= require ./communique
 //
-//= require_tree ../templates/communique
-//= require_tree ./communique/models
-//= require_tree ./communique/collections
-//= require_tree ./communique/views
-//= require_tree ./communique/routers
+//= require_tree ../../templates/communique
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
