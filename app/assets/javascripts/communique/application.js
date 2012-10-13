@@ -13,3 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+//
+// Add Backbone related dependencies:
+//
+//= require underscore
+//= require backbone
+//
+//= require ./communique/inbox
+//
+//= require_tree ../templates/communique
+//= require_tree ./communique/models
+//= require_tree ./communique/collections
+//= require_tree ./communique/views
+//= require_tree ./communique/routers
