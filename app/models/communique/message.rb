@@ -4,22 +4,23 @@ require_relative '../../shared/shared_scopes'
 
 module Communique
   class Message < ActiveRecord::Base
-    attr_accessible :content, :deleted, :draft, :sender_id, :subject, :recipients
-    attr_accessor :recipients
 
     include Shared::SharedActions
     extend Shared::MessageScopes
     extend Shared::SharedScopes
 
-    default_scope where(deleted: false).order("created_at DESC")
+    attr_accessible :content, :deleted, :draft, :sender_id, :subject, :recipients
+    attr_accessor :recipients
 
     belongs_to :sender, class_name: "::User"
     validates_presence_of :sender_id, :recipients, :subject, :content
 
+    default_scope where(deleted: false).order("created_at DESC")
+
     def initialize
       super
-      @deleted = false
-      @draft = true
+      write_attribute(:deleted, false)
+      write_attribute(:draft, true)
     end
 
     def send_message

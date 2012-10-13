@@ -16,6 +16,14 @@ describe Communique::Message do
   it "is invalid without message content" do
     build(:message, content: nil).should_not be_valid
   end
+  it "should be draft by default" do
+    m = Communique::Message.new
+    m.draft.should == true
+  end
+  it "should not be deleted by default" do
+    m = Communique::Message.new
+    m.deleted.should == false
+  end
   context "interface" do
     it{ should respond_to(:send_message) }
     it{ should respond_to(:mark_as_deleted) }
