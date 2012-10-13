@@ -1,15 +1,26 @@
-require_relative '../../shared/recipient_actions'
-require_relative '../../shared/recipient_scopes'
 require_relative '../../shared/shared_scopes'
 require_relative '../../shared/shared_actions'
 
 module Communique
   class MessageReception < ActiveRecord::Base
     attr_accessible :deleted, :message_id, :read, :recipient_id
-    include Shared::RecipientActions
     include Shared::SharedActions
-    extend Shared::RecipientScopes
     extend Shared::SharedScopes
 
+    def self.read
+      where(read: true)
+    end
+    def self.unread
+      where(read: false)
+    end
+    def self.by_recipient(recipient)
+      where(recipient_id: recipient.id)
+    end
+    def mark_as_read
+      update_attribute :read, true
+    end
+    def mark_as_unread
+      update_attribute :read, false
+    end
   end
 end

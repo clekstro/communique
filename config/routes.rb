@@ -1,6 +1,4 @@
 Communique::Engine.routes.draw do
-	devise_for :users
-	
   match '/messages' => 'messages#create', :via => [:post], :as => :create_message
   match '/messages/new' => 'messages#new', :via => [:get], :as => :new_message
   match '/messages/edit' => 'messages#edit', :via => [:get], :as => :edit_message

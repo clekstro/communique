@@ -1,0 +1,6 @@
+== form_for @message, :path => create_message_path, :html => {:class => 'form-horizontal' } do |f|
+  = f.input :recipients
+  = f.input :subject
+  = f.input :content
+  = f.submit
+  
