@@ -3,6 +3,7 @@ require 'bootstrap-sass'
 require 'font-awesome-sass-rails'
 require 'slim'
 require 'backbone-on-rails'
+require 'jbuilder'
 
 module Communique
   class Engine < ::Rails::Engine

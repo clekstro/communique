@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
   s.add_dependency "coffee-rails"
   s.add_dependency "backbone-on-rails"
+  s.add_dependency "jbuilder"
 
 
   s.add_development_dependency "sqlite3"
