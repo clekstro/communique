@@ -7,3 +7,4 @@ spec/dummy/tmp/
 spec/dummy/.sass-cache
 spec/dummy/.rvmrc
 spec/dummy/.powrc
+.DS_STORE
