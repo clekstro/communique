@@ -1,1 +1,0 @@
-class Communique.Models.Message extends Backbone.Model
