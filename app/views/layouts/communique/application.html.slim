@@ -7,4 +7,10 @@ html
     = csrf_meta_tags 
   body
     div.container
-      == yield
+    div style="margin-top:60px;"
+    div.row
+      div.span3
+        ul.nav.nav-tabs.span3
+          = render 'communique/messages/partials/inbox_links'
+      div.span9
+        == yield

@@ -1,25 +1,16 @@
-div style="margin-top:60px;"
-div.row
-  div.span3.tabbable.tabs-left
-    ul.nav.nav-tabs.span3
-      li = link_to "Inbox (#{@count})", inbox_path
-      li = link_to "Sent Messages", outbox_path
-      li = link_to "Drafts", drafts_path
-      li = link_to "Trash", trash_path
-  div.span9.tab-content
-    table.table.table-hover.table-condensed role="presentation"
-      thead
-        tr
-          th.span2 Sender
-          th.span5 Subject
-          th.span1 Date
-          th.span1 Actions
-      tbody
-        tr
-      - if @messages.size > 0
-        - for message in @messages
-          td.span2.sender = message.sender.username
-          td.span5.subject = message.subject
-          td.span2.date = time_if_today(message.created_at)
-      - else
-        td.span9 There are no messages to display.
+table.table.table-hover.table-condensed role="presentation"
+  thead
+    tr
+      th.span2 Sender
+      th.span5 Subject
+      th.span1 Date
+      th.span1 Actions
+  tbody
+    tr
+  - if @messages.size > 0
+    - for message in @messages
+      td.span2.sender = message.sender.username
+      td.span5.subject = message.subject
+      td.span2.date = time_if_today(message.created_at)
+  - else
+    td.span9 There are no messages to display.

@@ -31,13 +31,13 @@ module Communique
       # render another page if trying to edit a message that was already sent
     end
   
-    def inbox
+    def index
       @messages= received_by_user
       @count = unread_count
       render_inbox
     end
   
-    def outbox
+    def sent
       @messages = sent_by_user
       @count = unread_count
       render_inbox
