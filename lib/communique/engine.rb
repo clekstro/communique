@@ -1,5 +1,5 @@
 require 'rails'
-require 'bootstrap-sass'
+require 'slim'
 
 module Communique
   class Engine < ::Rails::Engine

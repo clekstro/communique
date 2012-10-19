@@ -5,7 +5,6 @@ require 'rails/all'
 Bundler.require
 require "communique"
 require 'devise'
-require 'bootstrap-sass'
 
 module Dummy
   class Application < Rails::Application
