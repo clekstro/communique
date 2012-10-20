@@ -37,7 +37,8 @@ module Communique
 
     def show
       reception = Communique::MessageReception.find_by_message_id(params[:id])
-      redirect_to :messages unless reception
+      redirect_to :messages and return unless reception
+      redirect_to :messages and return unless is_message_recipient?(reception)
       reception.mark_as_read
       @message = reception.message
       @count = unread_count
@@ -45,7 +46,8 @@ module Communique
 
     def show_sent
       @message = Communique::Message.find_by_id(params[:id])
-      redirect_to :messages unless @message
+      redirect_to :messages and return unless @message
+      redirect_to :messages and return unless is_message_sender?(@message)
       @count = unread_count
       render 'communique/messages/show'
     end
@@ -104,17 +106,11 @@ module Communique
       ::User.where(username: user_list)
       # TODO: replace direct call to user wtih engine config
     end
-    def restrict_to_recipient
-      redirect_to :messages unless is_message_recipient?(message_reception_id)
+    def is_message_recipient?(message_reception)
+      Communique::Controllers::SecureAccess::is_message_recipient?(message_reception, current_user_id)
     end
-    def restrict_to_sender
-      redirect_to :messages unless is_message_sender?(message_id)
-    end
-    def is_message_recipient?(message_reception_id)
-      Communique::Controllers::SecureAccess::is_message_recipient?(message_reception_id)
-    end
-    def is_message_sender?(message_id)
-      Communique::Controllers::SecureAccess::is_message_sender?(message_id)
+    def is_message_sender?(message)
+      Communique::Controllers::SecureAccess::is_message_sender?(message, current_user_id)
     end
     def current_user_id
       current_user.id
