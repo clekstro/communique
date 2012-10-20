@@ -14,6 +14,9 @@ module Communique
     attr_accessor :recipients
 
     belongs_to :sender, class_name: "::User"
+    has_many :responses, class_name: "Communique::Message", foreign_key: "response_id"
+    belongs_to :responds_to, class_name: "Communique::Message", foreign_key: "response_id"
+
     validates_presence_of :sender_id, :recipients, :subject, :content
 
     default_scope where(deleted: false).order("created_at DESC")

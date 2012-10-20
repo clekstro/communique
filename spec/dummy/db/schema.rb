@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121012021037) do
+ActiveRecord::Schema.define(:version => 20121020110730) do
 
   create_table "communique_message_receptions", :force => true do |t|
     t.integer  "message_id"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(:version => 20121012021037) do
     t.text     "content"
     t.boolean  "deleted"
     t.boolean  "draft"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "response_id"
   end
 
   create_table "users", :force => true do |t|

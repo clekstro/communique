@@ -27,7 +27,8 @@ describe Communique::Message do
   context "interface" do
     it{ should respond_to(:send_message) }
     it{ should respond_to(:mark_as_deleted) }
-    it{ should respond_to(:mark_as_draft) } 
+    it{ should respond_to(:mark_as_draft) }
+    it{ should respond_to(:responses) }
   end
   context "#send_message" do
     it "creates reception record for all recipients" do
@@ -63,6 +64,22 @@ describe Communique::Message do
       message = create(:message, draft: true)
       message.unmark_as_draft
       message.draft.should == false
+    end
+  end
+  context "#responses" do
+    it "returns only those messages responding to self" do
+      message = create(:message)
+      message_response = create(:message, response_id: message.id)
+      message.responses.should include(message_response)
+      message.responses.should_not include(message)
+    end
+  end
+  context "#response_to" do
+    it "returns message that self is responding to" do
+      message = create(:message)
+      message_response = create(:message, response_id: message.id)
+      message_response.responds_to.should == message
+      message.responds_to.should_not == message_response
     end
   end
   describe "Class Methods" do
