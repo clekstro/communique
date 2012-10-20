@@ -1,6 +1,7 @@
 require_relative '../../shared/shared_actions'
 require_relative '../../shared/message_scopes'
 require_relative '../../shared/shared_scopes'
+require_relative '../../shared/message_bridge'
 
 module Communique
   class Message < ActiveRecord::Base
@@ -25,11 +26,11 @@ module Communique
 
     def send_message
       unmark_as_draft if draft
-      Shared::MessageBridge::send_message(self)
+      MessageBridge::send_message(self)
     end
 
     def sent_on
-      Shared::MessageBridge::sent_on(self)
+      MessageBridge::sent_on(self)
     end
 
     # def sent?

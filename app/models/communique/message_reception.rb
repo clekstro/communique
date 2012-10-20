@@ -8,7 +8,9 @@ module Communique
     extend Shared::SharedScopes
     
     attr_accessible :deleted, :message_id, :read, :recipient_id
-    validates_uniqueness_of :message_id, scope: :recipient_id    
+    validates_uniqueness_of :message_id, scope: :recipient_id
+
+    belongs_to :message
 
     def self.read
       where(read: true)
