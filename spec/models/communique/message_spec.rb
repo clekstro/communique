@@ -87,6 +87,7 @@ describe Communique::Message do
     it{ should respond_to(:sent_by) }
     it{ should respond_to(:sent) }
     it{ should respond_to(:draft) }
+    it{ should respond_to(:present) }
     context "#sent_by" do
       it "should show only those messages sent by sender" do
         sender = create(:user)
@@ -120,6 +121,14 @@ describe Communique::Message do
         already_sent = create(:message, draft: false)
         Communique::Message.draft.should include(draft_message)
         Communique::Message.draft.should_not include(already_sent)
+      end
+    end
+    context "#present" do
+      it "should return only undeleted messages" do
+        deleted_message = create(:message, deleted: true)
+        present = create(:message)
+        Communique::Message.present.should include(present)
+        Communique::Message.present.should_not include(deleted_message)
       end
     end
   end
