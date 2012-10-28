@@ -2,7 +2,7 @@ require_relative '../../shared/shared_scopes'
 require_relative '../../shared/shared_actions'
 
 module Communique
-  class MessageReception < ActiveRecord::Base
+  class ReceivedMessage < ActiveRecord::Base
 
     include Shared::SharedActions
     extend Shared::SharedScopes

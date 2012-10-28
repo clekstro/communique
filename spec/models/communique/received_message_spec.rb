@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Communique::MessageReception do
+describe Communique::ReceivedMessage do
   it{ should respond_to(:mark_as_read) }
   it{ should respond_to(:mark_as_unread) }
 
@@ -25,7 +25,7 @@ describe Communique::MessageReception do
     end
   end
   describe "Class Methods" do
-    subject { Communique::MessageReception }
+    subject { Communique::ReceivedMessage }
     it{ should respond_to(:deleted) }
     it{ should respond_to(:read) }
     it{ should respond_to(:unread) }
@@ -33,8 +33,8 @@ describe Communique::MessageReception do
       it "should show only deleted messages" do
         deleted = create(:message_reception, deleted: true, recipient_id: 1)
         not_deleted = create(:message_reception, deleted: false, recipient_id: 2)
-        Communique::MessageReception.deleted.should include(deleted)
-        Communique::MessageReception.deleted.should_not include(not_deleted)
+        Communique::ReceivedMessage.deleted.should include(deleted)
+        Communique::ReceivedMessage.deleted.should_not include(not_deleted)
       end
     end
   end
