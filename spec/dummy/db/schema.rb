@@ -11,16 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121020110730) do
-
-  create_table "communique_message_receptions", :force => true do |t|
-    t.integer  "message_id"
-    t.integer  "recipient_id"
-    t.boolean  "deleted"
-    t.boolean  "read"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
-  end
+ActiveRecord::Schema.define(:version => 20121028202746) do
 
   create_table "communique_messages", :force => true do |t|
     t.integer  "sender_id"
@@ -31,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20121020110730) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.integer  "response_id"
+    t.string   "recipients"
+  end
+
+  create_table "communique_received_messages", :force => true do |t|
+    t.integer  "message_id"
+    t.integer  "recipient_id"
+    t.boolean  "deleted"
+    t.boolean  "read"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
   create_table "users", :force => true do |t|
