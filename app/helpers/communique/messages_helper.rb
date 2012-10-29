@@ -14,5 +14,9 @@ module Communique
       I18n.localize(input_date, format: :shortened_day)
     end
 
+    def add_comma_padding!(str)
+      str.gsub!(/,/, ', ')
+    end
+
   end
 end

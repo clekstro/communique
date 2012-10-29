@@ -12,6 +12,8 @@ module Communique
 
     belongs_to :message
 
+    delegate :content, :subject, :sender, to: :message, prefix: true
+
     def self.read
       where(read: true)
     end

@@ -11,5 +11,10 @@ require 'spec_helper'
 #   end
 # end
 describe Communique::MessagesHelper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  context "#add_comma_padding" do
+    it "should return a padded comma-separated string" do
+      str = "1,2,3"
+      add_comma_padding!(str).should == "1, 2, 3"
+    end
+  end
 end
