@@ -40,5 +40,21 @@ describe Communique::ReceivedMessage do
         Communique::ReceivedMessage.deleted.should_not include(not_deleted)
       end
     end
+    context "#read" do
+      it "should show only read messages" do
+        read = create(:received_message, read: true, recipient_id: 1)
+        unread = create(:received_message, read: false, recipient_id: 2)
+        Communique::ReceivedMessage.read.should include(read)
+        Communique::ReceivedMessage.read.should_not include(unread)
+      end
+    end
+    context "#unread" do
+      it "returns only unread messages" do
+        read = create(:received_message, read: true, recipient_id: 1)
+        unread = create(:received_message, read: false, recipient_id: 2)
+        Communique::ReceivedMessage.unread.should include(unread)
+        Communique::ReceivedMessage.unread.should_not include(read)
+      end
+    end
   end
 end

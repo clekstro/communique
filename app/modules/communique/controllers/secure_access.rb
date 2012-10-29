@@ -1,8 +1,8 @@
 module Communique
   module Controllers
     module SecureAccess
-      def self.is_message_recipient?(message_reception, current_user_id)
-        m = Communique::MessageReception.find_by_id(message_reception.id)
+      def self.is_message_recipient?(received_message, current_user_id)
+        m = Communique::ReceivedMessage.find_by_id(received_message.id)
         return false unless m
         current_user_id == m.recipient_id
       end

@@ -36,9 +36,9 @@ module Communique
       MessageBridge::sent_on(self)
     end
 
-    # def sent?
-    #   !sent_on.nil?
-    # end
+     def sent?
+       draft == false
+     end
 
     def mark_as_draft
       update_attribute :draft, true

@@ -29,13 +29,14 @@ describe Communique::Message do
     it{ should respond_to(:mark_as_deleted) }
     it{ should respond_to(:mark_as_draft) }
     it{ should respond_to(:responses) }
+    it{ should respond_to(:sent?) }
   end
   context "#send_message" do
     it "creates reception record for all recipients" do
       user = create(:user)
       message = create(:message, recipients: [user])
       message.send_message
-      Communique::MessageReception.find_by_recipient_id(user.id).message_id.should == message.id
+      Communique::ReceivedMessage.find_by_recipient_id(user.id).message_id.should == message.id
     end
   end
   context "#mark_as_deleted" do
@@ -80,6 +81,12 @@ describe Communique::Message do
       message_response = create(:message, response_id: message.id)
       message_response.responds_to.should == message
       message.responds_to.should_not == message_response
+    end
+  end
+  context "#sent?" do
+    it "returns false if message is draft" do
+      draft_message = create(:message, draft: true)
+      draft_message.sent?.should be_false
     end
   end
   describe "Class Methods" do

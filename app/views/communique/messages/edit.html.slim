@@ -1,0 +1,16 @@
+== form_for @message, :method => :put do |f|
+  div.recipients
+    = f.label "To:"
+    br
+    = f.text_field :recipients
+  div.subject
+    = f.label "Subject:"
+    br
+    = f.text_field :subject
+  div.content
+    = f.label "Message:"
+    br
+    = f.text_area :content
+  div.submit
+    = f.submit "Send Message"
+    = f.submit "Save Draft", name: 'save_draft'

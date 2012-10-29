@@ -36,7 +36,7 @@ module Communique
     end
 
     def show
-      reception = Communique::MessageReception.find_by_message_id(params[:id])
+      reception = Communique::ReceivedMessage.find_by_message_id(params[:id])
       redirect_to :messages and return unless reception
       redirect_to :messages and return unless is_message_recipient?(reception)
       reception.mark_as_read
@@ -99,15 +99,15 @@ module Communique
       render :template => 'communique/messages/outbox'
     end
     def unread_count
-      Communique::MessageReception.by_recipient(current_user).unread.count
+      Communique::ReceivedMessage.by_recipient(current_user).unread.count
     end
     def extract_users(user_list)
       user_list.gsub(/\s+/, "").split(',')
       ::User.where(username: user_list)
       # TODO: replace direct call to user wtih engine config
     end
-    def is_message_recipient?(message_reception)
-      Communique::Controllers::SecureAccess::is_message_recipient?(message_reception, current_user_id)
+    def is_message_recipient?(received_message)
+      Communique::Controllers::SecureAccess::is_message_recipient?(received_message, current_user_id)
     end
     def is_message_sender?(message)
       Communique::Controllers::SecureAccess::is_message_sender?(message, current_user_id)

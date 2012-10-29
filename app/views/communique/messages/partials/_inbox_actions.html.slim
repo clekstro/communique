@@ -1,0 +1,4 @@
+td.reply
+  = link_to "Reply", reply_path(message)
+td.delete
+  = link_to "Delete", message_path(message), :method => :delete

@@ -11,7 +11,7 @@ module Shared
     end
 
     def received_by(recipient)
-      message_ids = Communique::MessageReception.by_recipient(recipient).pluck(:message_id)
+      message_ids = Communique::ReceivedMessage.by_recipient(recipient).pluck(:message_id)
       messages = self.where(id: message_ids)
     end
 
