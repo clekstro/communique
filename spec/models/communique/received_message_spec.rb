@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Communique::ReceivedMessage do
   it{ should respond_to(:mark_as_read) }
   it{ should respond_to(:mark_as_unread) }
+  it{ should respond_to(:mark_as_deleted) }
+  it{ should respond_to(:unmark_as_deleted) }
   it{ should respond_to(:message_subject) }
   it{ should respond_to(:message_content) }
   it{ should respond_to(:message_sender) }
@@ -32,6 +34,7 @@ describe Communique::ReceivedMessage do
     it{ should respond_to(:deleted) }
     it{ should respond_to(:read) }
     it{ should respond_to(:unread) }
+    it{ should respond_to(:present) }
     context "#deleted" do
       it "should show only deleted messages" do
         deleted = create(:received_message, deleted: true, recipient_id: 1)

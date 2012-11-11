@@ -14,6 +14,8 @@ module Communique
 
     delegate :content, :subject, :sender, to: :message, prefix: true
 
+    default_scope order("created_at DESC")
+
     def self.read
       where(read: true)
     end

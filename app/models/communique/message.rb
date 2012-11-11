@@ -5,13 +5,13 @@ require_relative '../../shared/message_bridge'
 
 module Communique
   class Message < ActiveRecord::Base
+    before_save :trim_recipients
 
     include Shared::SharedActions
     extend Shared::MessageScopes
     extend Shared::SharedScopes
 
     attr_accessible :content, :deleted, :draft, :sender_id, :subject, :recipients
-    attr_accessor :recipients
 
     belongs_to :sender, class_name: "::User"
     has_many :responses, class_name: "Communique::Message", foreign_key: "response_id"
@@ -19,7 +19,7 @@ module Communique
 
     validates_presence_of :sender_id, :recipients, :subject, :content
 
-    default_scope where(deleted: false).order("created_at DESC")
+    default_scope order("created_at DESC")
 
     def initialize
       super
@@ -29,6 +29,7 @@ module Communique
 
     def send_message
       unmark_as_draft if draft
+      # raise error if no users found in send_message
       MessageBridge::send_message(self)
     end
 
@@ -46,6 +47,12 @@ module Communique
 
     def unmark_as_draft
       update_attribute :draft, false
+    end
+
+    private
+
+    def trim_recipients
+      self.recipients.gsub!(/\s+/, "")
     end
  end
 end

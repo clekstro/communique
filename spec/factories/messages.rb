@@ -5,6 +5,6 @@ FactoryGirl.define do
     content "Message Content"
     draft false
     deleted false
-    recipients %w[johndoe, janedoe]
+    recipients "johndoe, janedoe"
   end
 end

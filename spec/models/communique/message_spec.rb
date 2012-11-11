@@ -27,14 +27,16 @@ describe Communique::Message do
   context "interface" do
     it{ should respond_to(:send_message) }
     it{ should respond_to(:mark_as_deleted) }
+    it{ should respond_to(:unmark_as_deleted) }
     it{ should respond_to(:mark_as_draft) }
+    it{ should respond_to(:unmark_as_draft) }
     it{ should respond_to(:responses) }
     it{ should respond_to(:sent?) }
   end
   context "#send_message" do
-    it "creates reception record for all recipients" do
+    it "creates received message for all recipients" do
       user = create(:user)
-      message = create(:message, recipients: [user])
+      message = create(:message, recipients: user.username)
       message.send_message
       Communique::ReceivedMessage.find_by_recipient_id(user.id).message_id.should == message.id
     end
@@ -109,9 +111,9 @@ describe Communique::Message do
         recipient = create(:user)
         other = create(:user)
         message = create(:message)
-        message.recipients = [recipient]
-        message.send_message
-        Communique::Message.received_by(recipient).should include(message)
+        received_message = create(:received_message, message_id: message.id, recipient_id: recipient.id)
+        Communique::Message.received_by(recipient).should include(received_message.message)
+        Communique::Message.received_by(other).should_not include(received_message.message)
       end
     end
     context "#sent" do

@@ -12,7 +12,6 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20121028202746) do
-
   create_table "communique_messages", :force => true do |t|
     t.integer  "sender_id"
     t.string   "subject"
