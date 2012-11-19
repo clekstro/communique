@@ -1,5 +1,6 @@
 module Shared
   module SharedActions
+
     def mark_as_deleted
       update_attribute :deleted, true
     end

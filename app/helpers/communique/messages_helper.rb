@@ -14,7 +14,7 @@ module Communique
       I18n.localize(input_date, format: :shortened_day)
     end
 
-    def add_comma_padding!(str)
+    def add_comma_padding!(str) # TODO: make the separator configurable by userblock_if_sent
       str.gsub!(/,/, ', ')
     end
 

@@ -15,6 +15,16 @@ describe Communique::ReceivedMessage do
     duplicate.should_not be_valid
   end
 
+  it "is unread by default" do
+    received_message = Communique::ReceivedMessage.new
+    received_message.read.should be_false
+  end
+
+  it "is undeleted by default" do
+    received_message = Communique::ReceivedMessage.new
+    received_message.deleted.should be_false
+  end
+
   context "#mark_as_read" do
     it "should mark message as read" do
       message = create(:received_message, read: false)
