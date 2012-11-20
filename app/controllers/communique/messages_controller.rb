@@ -32,12 +32,12 @@ module Communique
 
     def destroy
       @received_msg.mark_as_deleted
-      redirect_to :messages
+      redirect_to :back
     end
 
     def destroy_sent
       @sent_msg.mark_as_deleted
-      redirect_to :sent
+      redirect_to :back
     end
 
     def reply
@@ -111,7 +111,7 @@ module Communique
 
     def prevent_recipient_forgery
       @received_msg = Communique::ReceivedMessage.
-        find_by_message_id_and_recipient_id(params[:id], current_user_id)
+        find_by_id_and_recipient_id(params[:id], current_user_id)
       redirect_to :messages and return unless @received_msg
     end
 

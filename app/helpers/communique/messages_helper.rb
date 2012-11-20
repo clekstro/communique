@@ -18,5 +18,18 @@ module Communique
       str.gsub!(/,/, ', ')
     end
 
+    def is_received_message?(message)
+      message.respond_to?(:message_id)
+    end
+
+    def determine_delete_path(message)
+      if message.respond_to?(:message_id)
+        [message_path(message.id), :method => :delete]
+      else
+        destroy_sent_path(message)
+      end
+      
+    end
+
   end
 end

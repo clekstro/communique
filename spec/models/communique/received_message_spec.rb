@@ -5,9 +5,9 @@ describe Communique::ReceivedMessage do
   it{ should respond_to(:mark_as_unread) }
   it{ should respond_to(:mark_as_deleted) }
   it{ should respond_to(:unmark_as_deleted) }
-  it{ should respond_to(:message_subject) }
-  it{ should respond_to(:message_content) }
-  it{ should respond_to(:message_sender) }
+  it{ should respond_to(:subject) }
+  it{ should respond_to(:content) }
+  it{ should respond_to(:sender) }
 
   it "is invalid if duplicate" do
     received_message = create(:received_message)

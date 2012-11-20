@@ -12,7 +12,7 @@ module Communique
 
     belongs_to :message
 
-    delegate :content, :subject, :sender, to: :message, prefix: true
+    delegate :content, :subject, :sender, to: :message
 
     default_scope order("created_at DESC")
 
