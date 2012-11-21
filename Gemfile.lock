@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    communique (0.0.1)
+    communique (0.2)
       devise (~> 2.1.2)
       kaminari
       rails (~> 3.2.8)
