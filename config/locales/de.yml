@@ -1,4 +1,16 @@
 de:
+  messages:
+    compose: "Neue Nachricht"
+    inbox: "Inbox"
+    sent: "Gesendet"
+    drafts: "Drafts"
+    trash: "Müll"
+    sender: "Von"
+    recipient: "Empfänger"
+    subject: "Betreff"
+    date: "Datum"
+    actions: "Aktionen"
+    none: "Es liegen keine Nachrichten vor."
   time:
     formats:
       shortened_day: "%e. %B"

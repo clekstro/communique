@@ -1,5 +1,6 @@
 require 'rails'
 require 'slim'
+require 'kaminari'
 
 module Communique
   class Engine < ::Rails::Engine

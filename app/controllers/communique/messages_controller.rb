@@ -62,17 +62,17 @@ module Communique
     end
 
     def index
-      @messages= received_by_user
+      @messages= received_by_user.page(params[:page])
       render_inbox
     end
 
     def sent
-      @messages = sent_by_user.sent
+      @messages = sent_by_user.sent.page(params[:page])
       render_outbox
     end
 
     def drafts
-      @messages = sent_by_user.draft
+      @messages = sent_by_user.draft.page(params[:page])
     end
 
     def destroy_draft

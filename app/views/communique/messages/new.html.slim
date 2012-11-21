@@ -1,16 +1,16 @@
 == form_for @message do |f|
   div.recipients
-    = f.label "To:"
+    = f.label I18n.t('messages.forms.labels.to')
     br
     = f.text_field :recipients
   div.subject
-    = f.label "Subject:"
+    = f.label I18n.t('messages.forms.labels.subject')
     br
     = f.text_field :subject
   div.content
-    = f.label "Message:"
+    = f.label I18n.t('messages.forms.labels.content')
     br
     = f.text_area :content
   div.submit
-    = f.submit "Send Message"
-    = f.submit "Save Draft", name: 'save_draft'
+    = f.submit I18n.t('messages.forms.buttons.send_message')
+    = f.submit I18n.t('messages.forms.buttons.save_draft'), name: 'save_draft'

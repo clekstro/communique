@@ -1,4 +1,27 @@
 en:
+  messages:
+    links:
+      compose: "Compose"
+      inbox: "Inbox"
+      sent: "Sent"
+      drafts: "Drafts"
+      trash: "Trash"
+    headings:
+      sender: "Sender"
+      recipient: "Recipient"
+      subject: "Subject"
+      date: "Date"
+      actions: "Actions"
+    forms:
+      labels:
+        to: "To"
+        subject: "Subject"
+        content: "Message"
+      buttons:
+        send_message: "Send Message"
+        save_draft: "Save Draft"
+    notices:
+      no_messages: "There are no messages to display."
   time:
     formats:
       shortened_day: "%b. %e"

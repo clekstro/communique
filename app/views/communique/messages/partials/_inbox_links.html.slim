@@ -1,5 +1,5 @@
-li = link_to "Compose", new_message_path
-li = link_to "Inbox (#{@count})", messages_path
-li = link_to "Sent Messages", sent_path
-li = link_to "Drafts", drafts_path
-li = link_to "Trash", trash_path				
+li = link_to I18n.t('messages.links.compose'), new_message_path
+li = link_to I18n.t('messages.links.inbox') + "(#{@count})", messages_path
+li = link_to I18n.t('messages.links.sent'), sent_path
+li = link_to I18n.t('messages.links.drafts'), drafts_path
+li = link_to I18n.t('messages.links.trash'), trash_path				
