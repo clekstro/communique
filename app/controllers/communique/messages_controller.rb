@@ -5,6 +5,8 @@ module Communique
     before_filter :prevent_recipient_forgery, only: [:show, :destroy]
     before_filter :prevent_sender_forgery, only: [:destroy_sent, :show_sent, :edit, :update]
 
+    layout "communique/application", :except => [:index, :sent, :drafts, :trash]
+
     def new
       @message = Communique::Message.new
     end
@@ -53,7 +55,7 @@ module Communique
 
     def show
       @received_msg.mark_as_read
-      @message = @received_msg.message
+      @message = @received_msg
     end
 
     def show_sent
@@ -82,7 +84,9 @@ module Communique
     end
 
     def trash
-      @messages = sent_by_user.unscoped.deleted | received_by_user.unscoped.deleted
+      sent = sent_by_user.unscoped.deleted.scoped
+      received = received_by_user.unscoped.deleted.scoped
+      @messages = (sent || received).order("created_at DESC").page(params[:page])
     end
 
     private
