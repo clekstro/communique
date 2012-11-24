@@ -1,14 +1,8 @@
 table.table.table-hover.table-condensed role="presentation"
-  thead
-    tr
-      th.span2 Recipient
-      th.span5 Subject
-      th.span1 Date
-      th.span1 Actions
+  = render :partial => 'communique/messages/partials/recipient_based_headings'
   tbody
     - if @messages.size > 0
       - for message in @messages
         = render :partial => 'communique/messages/partials/single_sent_message', locals: { message: message }
     - else
-      tr
-        td.span9 There are no messages to display.
+      = render :partial => 'communique/message/partials/no_messages_notice'

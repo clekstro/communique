@@ -10,5 +10,4 @@ table.table.table-hover.table-condensed role="presentation"
       - for message in @messages
         = render :partial => 'communique/messages/partials/single_message_data', locals: { message: message }
     - else
-      tr
-        td.span9 = I18n.t('messages.none')
+      = render :partial => 'communique/messages/partials/no_messages_notice'

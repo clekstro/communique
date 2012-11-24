@@ -1,17 +1,32 @@
 de:
   messages:
-    compose: "Neue Nachricht"
-    inbox: "Inbox"
-    sent: "Gesendet"
-    drafts: "Drafts"
-    trash: "Müll"
-    sender: "Von"
-    recipient: "Empfänger"
-    subject: "Betreff"
-    date: "Datum"
-    actions: "Aktionen"
-    none: "Es liegen keine Nachrichten vor."
+    links:
+      compose: "Neue Nachricht"
+      inbox: "Inbox"
+      sent: "Gesendet"
+      drafts: "Entwürfe"
+      trash: "Müll"
+      sender: "Von"
+    headings:
+      sender: "Von"
+      recipient: "Empfänger"
+      subject: "Betreff"
+      date: "Datum"
+      actions: "Aktionen"
+    actions:
+      reply: "Antworten"
+      delete: "Löschen"
+    forms:
+      labels:
+        to: "An"
+        subject: "Betreff"
+        content: "Nachricht"
+      buttons:
+        send_message: "Nachricht senden"
+        save_draft: "Entwurf speichern"
+    notices:
+      no_messages: "Es liegen keine Nachrichten vor."
   time:
     formats:
-      shortened_day: "%e. %B"
+      shortened_day: "%e. %b"
       shortened_time: "%H:%m"

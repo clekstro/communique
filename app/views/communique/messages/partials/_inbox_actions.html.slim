@@ -1,4 +1,4 @@
 td.reply
-  = link_to "Reply", reply_path(message.message)
+  = link_to I18n.t('messages.actions.reply'), reply_path(message.message)
 td.delete
-  = link_to "Delete", destroy_path(message)
+  = link_to I18n.t('messages.actions.delete'), destroy_path(message)
