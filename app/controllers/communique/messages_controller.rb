@@ -28,6 +28,7 @@ module Communique
     def update
       return if (message_not_found? || already_sent?)
       @message.attributes = params[:message]
+      @message.sender_id = current_user_id
       save_as_draft and return if params[:save_draft]
       save_as_sent
     end

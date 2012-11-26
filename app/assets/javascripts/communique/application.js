@@ -12,4 +12,5 @@
 //
 //= require jquery
 //= require jquery_ujs
-
+//= require wysihtml5
+//= require parser_rules/simple.js

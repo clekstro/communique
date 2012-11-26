@@ -2,10 +2,10 @@ de:
   messages:
     links:
       compose: "Neue Nachricht"
-      inbox: "Inbox"
+      inbox: "Posteingang"
       sent: "Gesendet"
       drafts: "Entwürfe"
-      trash: "Müll"
+      trash: "Mülleimer"
       sender: "Von"
     headings:
       sender: "Von"
@@ -28,5 +28,5 @@ de:
       no_messages: "Es liegen keine Nachrichten vor."
   time:
     formats:
-      shortened_day: "%e. %b"
-      shortened_time: "%H:%m"
+      shortened_day: "%e.%m"
+      shortened_time: "%H:%M"

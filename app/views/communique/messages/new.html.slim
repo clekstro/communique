@@ -9,8 +9,15 @@
     = f.text_field :subject
   div.content
     = f.label I18n.t('messages.forms.labels.content')
-    br
-    = f.text_area :content
+    = render :partial => 'communique/messages/partials/wysihtml5_toolbar'
+    = f.text_area :content, :id => 'wysihtml5-textarea'
   div.submit
     = f.submit I18n.t('messages.forms.buttons.send_message')
     = f.submit I18n.t('messages.forms.buttons.save_draft'), name: 'save_draft'
+
+javascript:
+  var editor = new wysihtml5.Editor("wysihtml5-textarea", {
+    toolbar:      "wysihtml5-toolbar",
+    stylesheets:  "#{stylesheet_path('wysiwyg')}", // optional, css to style the editor's content
+    parserRules: wysihtml5ParserRules
+  });

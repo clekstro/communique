@@ -14,7 +14,7 @@ module Communique
       I18n.localize(input_date, format: :shortened_day)
     end
 
-    def add_comma_padding!(str) # TODO: make the separator configurable by userblock_if_sent
+    def add_comma_padding!(str) # TODO: make the separator configurable by user
       str.gsub!(/,/, ', ')
     end
 
@@ -22,13 +22,14 @@ module Communique
       message.respond_to?(:message_id)
     end
 
-    def determine_delete_path(message)
-      if message.respond_to?(:message_id)
-        [message_path(message.id), :method => :delete]
-      else
-        destroy_sent_path(message)
-      end
-      
+    def generate_destroy_link(message, message_type=nil)
+      path = message_type.nil? ? "_path" : "_#{message_type}_path"
+      link_to I18n.t('messages.actions.delete'), eval("destroy#{path}(message)")
+    end
+
+    def generate_reply_link(message)
+      return unless is_received_message?(message)
+      link_to I18n.t('messages.actions.reply'), reply_path(message.message)
     end
 
   end

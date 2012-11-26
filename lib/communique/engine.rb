@@ -1,6 +1,7 @@
 require 'rails'
 require 'slim'
 require 'kaminari'
+require 'wysihtml5-rails'
 
 module Communique
   class Engine < ::Rails::Engine
