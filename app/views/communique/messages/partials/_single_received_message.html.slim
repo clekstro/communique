@@ -1,4 +1,6 @@
 tr
+  td.action
+    input id="message_#{message.id}" type="checkbox"
   td.span2.sender = message.sender.username
   td.span5.subject = link_to message.subject, message_path(message.message)
   td.span2.date = time_if_today(message.created_at)

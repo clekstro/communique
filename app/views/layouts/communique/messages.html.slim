@@ -15,3 +15,15 @@ html
       div.span9
         == yield
         = paginate @messages
+    javascript:
+      $('#select_all').click(function() {
+          $(this).is(':checked') ? selectCheckboxes() : unselectCheckboxes();
+      });
+
+      function unselectCheckboxes() {
+        $('input[id^="message_"]').attr('checked', false);
+      }
+
+      function selectCheckboxes() {
+        $('input:checkbox').attr('checked', 'checked');
+      }
