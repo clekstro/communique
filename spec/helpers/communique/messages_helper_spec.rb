@@ -17,10 +17,4 @@ describe Communique::MessagesHelper do
       add_comma_padding!(str).should == "1, 2, 3"
     end
   end
-  context "#draw_delete_link" do
-    it "builds and returns proper delete path depending on action" do
-      delete_type = 'sent'
-      draw_delete_link('sent').should.respond_with(link_to I18n.t('messages.actions.delete'), destroy_sent_path(message))
-    end
-  end
 end

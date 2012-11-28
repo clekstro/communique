@@ -11,6 +11,7 @@ module Communique
     validates_uniqueness_of :message_id, scope: :recipient_id
 
     belongs_to :message
+    belongs_to :recipient, class_name: "::User"
 
     delegate :content, :subject, :sender, to: :message
 
@@ -36,5 +37,8 @@ module Communique
       update_attribute :read, false
     end
 
+    def was_received_by?(user)
+      recipient == user
+    end
   end
 end

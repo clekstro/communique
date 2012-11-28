@@ -37,10 +37,13 @@ module Communique
       MessageBridge::sent_on(self)
     end
 
-     def sent?
-       draft == false
-     end
+    def sent?
+      draft == false
+    end
 
+    def was_sent_by?(user)
+      sender == user
+    end
     def mark_as_draft
       update_attribute :draft, true
     end
@@ -54,5 +57,5 @@ module Communique
     def trim_recipients
       self.recipients.gsub!(/\s+/, "")
     end
- end
+  end
 end

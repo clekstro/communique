@@ -9,6 +9,7 @@ Communique::Engine.routes.draw do
   match 'messages/sent/:id/delete' => 'messages#destroy_sent', :as => :destroy_sent
   match 'messages/:id/reply' => 'messages#reply', :as => :reply
   match 'messages/:id/delete' => 'messages#destroy', :as => :destroy
+  match 'messages/bulk/delete' => 'messages#destroy_in_bulk', :as => :bulk_destroy
   
   resources :messages
 end

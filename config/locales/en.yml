@@ -23,6 +23,7 @@ en:
       buttons:
         send_message: "Send Message"
         save_draft: "Save Draft"
+        bulk_delete: "Delete Selected"
     notices:
       no_messages: "There are no messages to display."
   time:

@@ -39,6 +39,15 @@ describe Communique::ReceivedMessage do
       message.read.should == false
     end
   end
+  context "was_received_by?" do
+    it "returns true only if it was received by user" do
+      recipient = create(:user)
+      non_recipient = create(:user)
+      received_message = create(:received_message, recipient_id: recipient.id)
+      received_message.was_received_by?(recipient).should == true
+      received_message.was_received_by?(non_recipient).should == false
+    end
+  end
   describe "Class Methods" do
     subject { Communique::ReceivedMessage }
     it{ should respond_to(:deleted) }

@@ -69,6 +69,15 @@ describe Communique::Message do
       message.draft.should == false
     end
   end
+  context "#was_sent_by?" do
+    it "returns true only if message was sent by user" do
+      sender = create(:user)
+      non_sender = create(:user)
+      message = create(:message, sender_id: sender.id)
+      message.was_sent_by?(sender).should == true
+      message.was_sent_by?(non_sender).should == false
+    end
+  end
   context "#responses" do
     it "returns only those messages responding to self" do
       message = create(:message)

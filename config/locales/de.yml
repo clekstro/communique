@@ -24,6 +24,7 @@ de:
       buttons:
         send_message: "Nachricht senden"
         save_draft: "Entwurf speichern"
+        bulk_delete: "Ausgewählte löschen"
     notices:
       no_messages: "Es liegen keine Nachrichten vor."
   time:

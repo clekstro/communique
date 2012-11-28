@@ -38,9 +38,23 @@ module Communique
       redirect_to :back
     end
 
+    def bulk_destroy
+      @messages = Communique::ReceivedMessage.find(params[:message_ids])
+      @messages.each do |received_message|
+        received_message.mark_as_deleted if received_message.was_received_by?(current_user)
+      end
+    end
+
     def destroy_sent
       @sent_msg.mark_as_deleted
       redirect_to :back
+    end
+
+    def bulk_destroy_sent
+      @messages = Communique::Message.find(params[:message_ids])
+      @messages.each do |message|
+        message.mark_as_deleted if message.was_sent_by?(current_user)
+      end
     end
 
     def reply
