@@ -1,0 +1,5 @@
+h1.subject = @message.subject
+p.content = raw @message.content
+
+= link_to I18n.t('messages.actions.reply'), messages_reply_path(@message)
+= link_to I18n.t('messages.actions.trash'), trash_message_path(@message), :method => :post

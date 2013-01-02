@@ -18,19 +18,17 @@ module Communique
       str.gsub!(/,/, ', ')
     end
 
-    def is_received_message?(message)
-      message.respond_to?(:message_id)
+    def delete_link(path)
+      link_to I18n.t('messages.actions.delete'), path, :method => :post
     end
 
-    def generate_destroy_link(message, message_type=nil)
-      path = message_type.nil? ? "_path" : "_#{message_type}_path"
-      link_to I18n.t('messages.actions.delete'), eval("destroy#{path}(message)")
+    
+    def trash_link(path)
+      link_to I18n.t('messages.actions.trash'), path, :method => :post
     end
 
-    def generate_reply_link(message)
-      return unless is_received_message?(message)
-      link_to I18n.t('messages.actions.reply'), reply_path(message.message)
+    def restore_link(path)
+      link_to I18n.t('messages.actions.restore'), path, :method => :post
     end
-
   end
 end

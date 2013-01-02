@@ -1,0 +1,13 @@
+tr
+  td.action
+    = check_box_tag "message_ids[]", draft_message.id
+  td.span2.sender = draft_message.sender.username
+  td.span5.subject = link_to draft_message.subject, edit_messages_draft_path(draft_message)
+  td.span2.date = time_if_today(draft_message.created_at)
+  - if current_page?(controller: 'trash', action: 'index')
+    td.span2.actions
+      = restore_link(restore_messages_draft_path(draft_message))
+      = delete_link(delete_messages_draft_path(draft_message))
+  - else
+    td.span2.actions
+      = trash_link(trash_messages_draft_path(draft_message))

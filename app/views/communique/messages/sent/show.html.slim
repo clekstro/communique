@@ -1,0 +1,7 @@
+h1.subject = @message.subject
+p.content = raw @message.content
+
+-if @message.trashed?
+  = delete_link(delete_messages_sent_path(@message, redirect_path: messages_sent_index_path))
+- else
+  = trash_link(trash_messages_sent_path(@message, redirect_path: messages_sent_index_path))

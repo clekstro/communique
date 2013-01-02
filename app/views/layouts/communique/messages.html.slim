@@ -3,6 +3,7 @@ html
   head
     title Communique
     = stylesheet_link_tag    "communique/application", :media => "all"
+    = stylesheet_link_tag    "communique/font_face"
     = javascript_include_tag "communique/application"
     = csrf_meta_tags 
   body
@@ -11,10 +12,10 @@ html
     div.row
       div.span3
         ul.nav.nav-tabs.span3
-          = render 'communique/messages/partials/inbox_links'
+          = render 'communique/outgoing_messages/partials/inbox_links'
       div.span9
         == yield
-        = paginate @messages
+        - #paginate @messages
     javascript:
       $('#select_all').click(function() {
           $(this).is(':checked') ? selectCheckboxes() : unselectCheckboxes();
@@ -27,3 +28,4 @@ html
       function selectCheckboxes() {
         $('input:checkbox').attr('checked', 'checked');
       }
+    

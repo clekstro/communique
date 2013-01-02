@@ -1,7 +1,0 @@
-tr
-  td.action
-    input id="message_#{received_message.id}" type="checkbox"
-  td.span2.sender = received_message.sender.username
-  td.span5.subject = link_to received_message.subject, message_path(received_message)
-  td.span2.date = time_if_today(received_message.created_at)
-  td.span2.actions = generate_destroy_link(received_message)

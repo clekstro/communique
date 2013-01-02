@@ -16,6 +16,7 @@ de:
     actions:
       reply: "Antworten"
       delete: "Löschen"
+      trash: "In den Mülleimer schieben"
     forms:
       labels:
         to: "An"
@@ -25,6 +26,7 @@ de:
         send_message: "Nachricht senden"
         save_draft: "Entwurf speichern"
         bulk_delete: "Ausgewählte löschen"
+        bulk_trash: "Ausgewählte in den Mülleimer schieben"
     notices:
       no_messages: "Es liegen keine Nachrichten vor."
   time:

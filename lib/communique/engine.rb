@@ -1,7 +1,9 @@
 require 'rails'
+require 'active_attr'
 require 'slim'
 require 'kaminari'
 require 'wysihtml5-rails'
+require 'ligature-symbols-rails'
 
 module Communique
   class Engine < ::Rails::Engine

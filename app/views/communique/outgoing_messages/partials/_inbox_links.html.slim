@@ -1,0 +1,5 @@
+li = link_to I18n.t('messages.links.compose'), new_messages_draft_path
+li = link_to I18n.t('messages.links.inbox') + "(#{@count})", messages_inbox_index_path
+li = link_to I18n.t('messages.links.sent'), messages_sent_index_path
+li = link_to I18n.t('messages.links.drafts'), messages_drafts_path
+li = link_to I18n.t('messages.links.trash'), messages_trash_index_path

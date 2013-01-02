@@ -1,0 +1,13 @@
+tr
+  td.action
+    input id="sent_message_#{sent_message.id}" type="checkbox"
+  td.span2.sender = sent_message.sender.username
+  td.span5.subject = link_to sent_message.subject, messages_sent_path(sent_message)
+  td.span2.date = time_if_today(sent_message.created_at)
+  - if current_page?(controller: 'trash', action: 'index')
+    td.span2.actions
+      = restore_link(restore_messages_sent_path(sent_message))
+      = delete_link(delete_messages_sent_path(sent_message))
+  - else
+    td.span2.actions = trash_link(trash_messages_sent_path(sent_message))
+

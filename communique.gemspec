@@ -17,17 +17,18 @@ Gem::Specification.new do |s|
 
 
   s.add_dependency "rails", "~> 3.2.8"
+  s.add_dependency "active_attr"
   s.add_dependency "devise", "~>2.1.2"
   s.add_dependency "sass-rails"
   s.add_dependency "slim"
   s.add_dependency "kaminari"
   s.add_dependency "wysihtml5-rails"
+  s.add_dependency "ligature-symbols-rails", "~>2.0.9.2"
 
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "factory_girl_rails"
   s.add_development_dependency "pry"
-  s.add_development_dependency "bullet"
-  s.add_development_dependency "rails-footnotes"
+  s.add_development_dependency "rails-footnotes", ">= 3.7.9"
 end

@@ -1,0 +1,10 @@
+h1.subject = @message.subject
+p.content = raw @message.content
+.reply
+  = link_to I18n.t('messages.actions.reply'), reply_messages_inbox_path(@message.message)
+  - if @message.trashed?
+    .trashed
+      = link_to I18n.t('messages.actions.restore'), restore_messages_inbox_path(@message), :method => :post
+  - else
+    .restore
+      = link_to I18n.t('messages.actions.trash'), trash_messages_inbox_path(@message), :method => :post
