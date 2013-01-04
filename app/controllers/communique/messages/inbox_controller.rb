@@ -2,14 +2,15 @@ module Communique
   module Messages
     class InboxController < ApplicationController
 
+      # messages scoped to current user for security
       def index
-        # messages scoped to current user for security
         @messages = Communique::IncomingMessage.includes(:message => :sender).for(current_user).present
       end
 
+      # prevent anyone but recipient from viewing, replying to, trashing or deleting message
       def show
         @message = find_recipient_message
-        redirect_to :messages_inbox_index and return unless @message
+        redirect_to messages_inbox_index_path and return unless @message
         @message.mark_as_read
       end
 
@@ -19,19 +20,19 @@ module Communique
           @message = Communique::ReplyMessage.new(original_message)
           render template: 'communique/messages/drafts/new'
         else
-          redirect_to :messages_inbox_index
+          redirect_to messages_inbox_index_path
         end
       end
 
       def trash
         @message = find_recipient_message
-        redirect_to :messages_inbox_index and return unless @message
+        redirect_to messages_inbox_index_path and return unless @message
         @message.mark_as_trashed
+        redirect_to(params[:redirect_path] || :back)
       end
 
       private
 
-      # prevent anyone but recipient from viewing, replying to, trashing or deleting message
       def find_recipient_message
         Communique::IncomingMessage.for(current_user).find_by_id(params[:id])
       end

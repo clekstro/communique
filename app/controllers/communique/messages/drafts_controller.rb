@@ -1,6 +1,7 @@
 module Communique
   module Messages
     class DraftsController < OutgoingMessagesController
+      # only sender can view, edit, send, trash or delete message
 
       def new
         @message = DraftMessage.new
@@ -16,15 +17,17 @@ module Communique
       end
 
       def show
-        prevent_sender_forgery
+        @message = find_draft
+        redirect_to(action: 'index') and return unless @message
       end
 
       def edit
-        prevent_sender_forgery
+        @message = find_draft
+        redirect_to(action: 'index') and return unless @message
       end
 
       def send_draft
-        prevent_sender_forgery
+        @message = find_draft
         save_as_sent
       end
 
@@ -35,13 +38,11 @@ module Communique
       private
 
       def drafts_for_user
-       DraftMessage.includes(:sender).for(current_user).present
+        DraftMessage.includes(:sender).for(current_user).present
       end
 
-      def prevent_sender_forgery
-        # only sender can view, trash or delete message
-        @message = DraftMessage.find_by_id_and_sender_id(params[:id], current_user_id)
-        redirect_to(action: 'index') and return unless @message
+      def find_draft
+        drafts_for_user.find_by_id(params[:id])
       end
 
       def save_as_draft
