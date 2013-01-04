@@ -9,8 +9,8 @@ module Communique
 
       def show
         @message = find_recipient_message
-        @message.mark_as_read if @message
-        redirect_to :messages_inbox_index
+        redirect_to :messages_inbox_index and return unless @message
+        @message.mark_as_read
       end
 
       def reply
@@ -25,19 +25,19 @@ module Communique
 
       def trash
         @message = find_recipient_message
-        @message.mark_as_trashed if @message
-        redirect_to :messages_inbox_index
+        redirect_to :messages_inbox_index and return unless @message
+        @message.mark_as_trashed
       end
 
       private
 
       # prevent anyone but recipient from viewing, replying to, trashing or deleting message
       def find_recipient_message
-        Communique::IncomingMessage.find_by_id_and_recipient_id(params[:id], current_user_id)
+        Communique::IncomingMessage.for(current_user).find_by_id(params[:id])
       end
 
       def may_reply_to(sent_message)
-        !Communique::IncomingMessage.find_by_recipient_id_and_message_id(current_user_id, sent_message.id).nil?
+        !Communique::IncomingMessage.for(recipient).find_by_message_id(sent_message.id).nil?
       end
 
     end
