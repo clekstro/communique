@@ -4,6 +4,8 @@ require 'slim'
 require 'kaminari'
 require 'wysihtml5-rails'
 require 'ligature-symbols-rails'
+require 'capybara-webkit'
+require 'better_errors'
 
 module Communique
   class Engine < ::Rails::Engine

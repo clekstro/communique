@@ -1,7 +1,7 @@
 require_relative '../../shared/status_scopes'
 
 module Communique
-  class OutgoingMessage < ActiveRecord::Base
+  class AuthoredMessage < ActiveRecord::Base
     before_save :trim_recipients
 
     include Communique::Concerns::Deletable

@@ -1,6 +1,6 @@
 module Communique
   module Messages
-    class SentController < OutgoingMessagesController
+    class SentController < AuthoredMessagesController
 
       # scope sent messages by user for security
       def index

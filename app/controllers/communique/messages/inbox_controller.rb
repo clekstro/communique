@@ -4,7 +4,7 @@ module Communique
 
       # messages scoped to current user for security
       def index
-        @messages = Communique::IncomingMessage.includes(:message => :sender).for(current_user).present
+        @messages = Communique::ReceivedMessage.includes(:message => :sender).for(current_user).present
       end
 
       # prevent anyone but recipient from viewing, replying to, trashing or deleting message
@@ -34,11 +34,11 @@ module Communique
       private
 
       def find_recipient_message
-        Communique::IncomingMessage.for(current_user).find_by_id(params[:id])
+        Communique::ReceivedMessage.for(current_user).find_by_id(params[:id])
       end
 
       def may_reply_to(sent_message)
-        !Communique::IncomingMessage.for(recipient).find_by_message_id(sent_message.id).nil?
+        !Communique::ReceivedMessage.for(recipient).find_by_message_id(sent_message.id).nil?
       end
 
     end

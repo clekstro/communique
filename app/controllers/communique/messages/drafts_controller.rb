@@ -1,6 +1,6 @@
 module Communique
   module Messages
-    class DraftsController < OutgoingMessagesController
+    class DraftsController < AuthoredMessagesController
       # only sender can view, edit, send, trash or delete message
 
       def new

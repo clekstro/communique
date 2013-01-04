@@ -1,5 +1,5 @@
 module Communique
-  class SentMessage < OutgoingMessage
+  class SentMessage < AuthoredMessage
     def sent?
       true
     end

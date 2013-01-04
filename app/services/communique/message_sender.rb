@@ -24,7 +24,7 @@ module Communique
     end
 
     def self.message_single_recipient(recipient, message_id)
-      Communique::IncomingMessage.create(
+      Communique::ReceivedMessage.create(
         message_id: message_id, recipient_id: recipient,
         deleted: false, trashed: false, read: false
       )

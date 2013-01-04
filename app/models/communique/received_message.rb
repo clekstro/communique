@@ -2,7 +2,7 @@ require_relative '../../shared/status_scopes'
 
 
 module Communique
-  class IncomingMessage < ActiveRecord::Base
+  class ReceivedMessage < ActiveRecord::Base
 
     include Communique::Concerns::Deletable
     include Communique::Concerns::Trashable

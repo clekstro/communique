@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :outgoing_message, class: "Communique::OutgoingMessage" do
+  factory :outgoing_message, class: "Communique::AuthoredMessage" do
     sender_id 1
     subject "Test Subject"
     content "Message Content"

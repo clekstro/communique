@@ -12,11 +12,11 @@ module Communique
     end
 
     def authored_by_user
-      Communique::OutgoingMessage.for(current_user).present
+      Communique::AuthoredMessage.for(current_user).present
     end
 
     def received_by_user
-      Communique::IncomingMessage.for(current_user).present
+      Communique::ReceivedMessage.for(current_user).present
     end
 
   end

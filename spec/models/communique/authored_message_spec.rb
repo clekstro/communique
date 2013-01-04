@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Communique::OutgoingMessage do
+describe Communique::AuthoredMessage do
 
   it "has a valid factory" do
     build(:outgoing_message).should be_valid
@@ -23,12 +23,12 @@ describe Communique::OutgoingMessage do
   end
 
   it "is not deleted by default" do
-    m = Communique::OutgoingMessage.new
+    m = Communique::AuthoredMessage.new
     m.deleted.should == false
   end
 
   it "is not trashed by default" do
-    m = Communique::OutgoingMessage.new
+    m = Communique::AuthoredMessage.new
     m.trashed.should == false
   end
 
@@ -50,12 +50,12 @@ describe Communique::OutgoingMessage do
       user = create(:user)
       message = create(:outgoing_message, recipients: user.username)
       message.send_message
-      Communique::IncomingMessage.find_by_recipient_id(user.id).message_id.should == message.id
+      Communique::ReceivedMessage.for(user).first.message_id.should == message.id
     end
   end
 
   describe "Class Methods" do
-    subject { Communique::OutgoingMessage }
+    subject { Communique::AuthoredMessage }
     it{ should respond_to(:for) }
     it{ should respond_to(:present) }
 
@@ -64,8 +64,8 @@ describe Communique::OutgoingMessage do
         sender = create(:user)
         other = create(:user)
         sent_by_sender = create(:outgoing_message, sender_id: sender.id)
-        Communique::OutgoingMessage.for(sender).should include(sent_by_sender)
-        Communique::OutgoingMessage.for(other).should_not include(sent_by_sender)
+        Communique::AuthoredMessage.for(sender).should include(sent_by_sender)
+        Communique::AuthoredMessage.for(other).should_not include(sent_by_sender)
       end
     end
 
@@ -73,8 +73,8 @@ describe Communique::OutgoingMessage do
       it "should return only undeleted messages" do
         deleted_message = create(:outgoing_message, deleted: true)
         present = create(:outgoing_message)
-        Communique::OutgoingMessage.present.should include(present)
-        Communique::OutgoingMessage.present.should_not include(deleted_message)
+        Communique::AuthoredMessage.present.should include(present)
+        Communique::AuthoredMessage.present.should_not include(deleted_message)
       end
     end
   end

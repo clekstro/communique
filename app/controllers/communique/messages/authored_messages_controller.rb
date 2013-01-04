@@ -1,23 +1,23 @@
 module Communique
   module Messages
-    class OutgoingMessagesController < ApplicationController
+    class AuthoredMessagesController < ApplicationController
 
       def trash
-        @message = author_message
+        @message = authored_message
         back_to_inbox and return unless @message
         @message.mark_as_trashed
         redirect_to(params[:redirect_path] || :back)
       end
 
       def delete
-        @message = author_message
+        @message = authored_message
         back_to_inbox and return unless @message
         @message.mark_as_deleted
         redirect_to(params[:redirect_path] || :back)
       end
 
       def restore
-        @message = author_message
+        @message = authored_message
         back_to_inbox and return unless @message
         @message.unmark_as_trashed
         redirect_to(params[:redirect_path] || :back)
@@ -25,7 +25,7 @@ module Communique
 
       private
 
-      def author_message
+      def authored_message
         authored_by_user.find_by_id(params[:id])
       end
 

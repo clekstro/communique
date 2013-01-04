@@ -1,13 +1,13 @@
 require 'spec_helper'
 
 describe Communique::ReceivedMessage do
-  # includes Communique::Concerns::Readable
+  # includes Readable
   it{ should respond_to(:mark_as_read) }
   it{ should respond_to(:mark_as_unread) }
-  # includes Communique::Concerns::Deletable
+  # includes Deletable
   it{ should respond_to(:mark_as_deleted) }
   it{ should respond_to(:unmark_as_deleted) }
-  # includes Communique::Concerns::Trashable
+  # includes Trashable
   it{ should respond_to(:mark_as_trashed) }
   it{ should respond_to(:unmark_as_trashed) }
   it{ should respond_to(:subject) }

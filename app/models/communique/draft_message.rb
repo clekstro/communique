@@ -1,5 +1,5 @@
 module Communique
-  class DraftMessage < OutgoingMessage
+  class DraftMessage < AuthoredMessage
 
     def draft?
       true
