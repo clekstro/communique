@@ -13,6 +13,7 @@ gem "jquery-rails"
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 gem 'capybara-webkit', github: 'thoughtbot/capybara-webkit'
+gem 'better_errors'
 
 # To use debugger
 # gem 'debugger'

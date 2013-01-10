@@ -6,6 +6,8 @@ Bundler.require
 require "communique"
 require 'devise'
 require 'rails-footnotes'
+require "better_errors"
+require 'binding_of_caller'
 
 module Dummy
   class Application < Rails::Application

@@ -3,6 +3,7 @@ module Communique
     class DraftsController < AuthoredMessagesController
       # only sender can view, edit, send, trash or delete message
 
+      # make sure we're checking for draft save on update as well!
       def new
         @message = DraftMessage.new
       end
@@ -18,16 +19,23 @@ module Communique
 
       def show
         @message = find_draft
-        redirect_to(action: 'index') and return unless @message
+        redirect_to(action: 'index') unless @message
       end
 
       def edit
         @message = find_draft
+        redirect_to(action: 'index') unless @message
+      end
+
+      def update
+        @message = find_draft
         redirect_to(action: 'index') and return unless @message
+        @message.save and redirect_to(action: 'index')
       end
 
       def send_draft
         @message = find_draft
+        redirect_to(action: 'index') and return unless @message
         save_as_sent
       end
 
@@ -49,6 +57,7 @@ module Communique
         if @message.save
           redirect_to(action: 'index')
         else
+          @message.errors.add(:recipients, I18n.t('messages.errors.unknown_recipient'))
           render :new
         end
       end
@@ -57,6 +66,7 @@ module Communique
         if @message.save && @message.send_message
           redirect_to(action: 'index')
         else
+          @message.errors.add(:recipients, I18n.t('messages.errors.unknown_recipient'))
           render :new
         end
       end 

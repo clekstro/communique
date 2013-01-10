@@ -29,6 +29,8 @@ de:
         bulk_trash: "Ausgewählte in den Mülleimer schieben"
     notices:
       no_messages: "Es liegen keine Nachrichten vor."
+    errors:
+      unknown_recipient: "Der Empfänger konnte nicht gefunden werden."
   time:
     formats:
       shortened_day: "%e.%m"

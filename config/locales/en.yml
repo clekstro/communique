@@ -29,6 +29,8 @@ en:
         bulk_trash: "Trash Selected"
     notices:
       no_messages: "There are no messages to display."
+    errors:
+      unknown_recipient: "The recipient could not be found."
   time:
     formats:
       shortened_day: "%b. %e"

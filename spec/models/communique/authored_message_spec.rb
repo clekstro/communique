@@ -24,12 +24,12 @@ describe Communique::AuthoredMessage do
 
   it "is not deleted by default" do
     m = Communique::AuthoredMessage.new
-    m.deleted.should == false
+    m.deleted.should be_false
   end
 
   it "is not trashed by default" do
     m = Communique::AuthoredMessage.new
-    m.trashed.should == false
+    m.trashed.should be_false
   end
 
   context "interface" do

@@ -32,4 +32,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "pry"
   s.add_development_dependency "rails-footnotes", ">= 3.7.9"
   s.add_development_dependency "better_errors"
+  s.add_development_dependency "binding_of_caller"
 end
